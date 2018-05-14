@@ -2,10 +2,11 @@ $(document).ready(function(){
 
     'use strict';
 
-    var dataUrl = "https://api.punkapi.com/v2/beers";
-    var dataArr;
-    var prodContainer = $('.grid');
-    var qsRegex;
+    var dataUrl = "https://api.punkapi.com/v2/beers",
+        dataArr,
+        prodContainer = $('.grid'),
+        qsRegex;
+
 
 
 
@@ -22,14 +23,11 @@ $(document).ready(function(){
                         '<div class="card-body">' +
                             '<h5 class="card-title">' + value.name + '</h5>' +
                             '<p class="card-text text-truncate">' + value.description + '</p>' +
-                            '<a href="#" class="badge badge-info">Detail</a>' +
+                            '<button class="badge badge-info detail" data-toggle="modal" data-target="#modalProd">Detail</button>' +
                         '</div>' +
                     '</div>'
                     );
                 });
-
-
-
 
                 // init Isotope
                 var $grid = $('.grid').isotope({
@@ -88,7 +86,13 @@ $(document).ready(function(){
                     });
                 });
 
-            }});
+                // modal
+                $('.card').on( 'click', '.detail', function() {
+                    $('.modal-title').text($(this).closest('.card').attr('data-name'));
+                    $('.modal-body').text($(this).closest('.card').attr('data-description'));
+                });
+
+            }}); //end success
     })();
 
 
