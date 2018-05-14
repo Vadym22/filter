@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Project</title>
+    <title>Beer list application</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 //= template/header.html
-    <section class="content">
+<section class="content">
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
+    <div class="container-fluid">
 
-    </section>
+        <h3>Filter</h3>
+        <input type="text" class="form-control quicksearch mb-3" placeholder="Name">
+
+        <h3>Sort</h3>
+        <div id="sorts" class="btn-group mb-4">
+            <button class="btn badge-success" data-sort-by="id">ID</button>
+            <button class="btn badge-secondary" data-sort-by="name">Name</button>
+            <button class="btn badge-secondary" data-sort-by="description">Description</button>
+        </div>
+
+        <div class="grid">
+
+        </div>
+
+    </div>
+
+</section>
 //= template/footer.html
+
+
 <script src="js/main.js"></script>
 </body>
 </html>
