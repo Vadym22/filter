@@ -7,9 +7,6 @@ $(document).ready(function(){
         prodContainer = $('.grid'),
         qsRegex;
 
-
-
-
     (function(){
         $.ajax({
             url: dataUrl,
@@ -18,7 +15,7 @@ console.log(result);
                 dataArr = result;
                 $.each(dataArr, function (index, value) {
                     prodContainer.append(
-                    '<div class="card mb-3 grid-item" data-id="' + value.id + '" data-name="' + value.name + '" data-description="' + value.description + '">' +
+                    '<div class="card mb-3 grid-item" data-img="' + value.image_url + '" data-id="' + value.id + '" data-name="' + value.name + '" data-description="' + value.description + '">' +
                         '<div class="card-img" style="background-image: url(' + value.image_url + '")></div>' +
                         '<div class="card-body">' +
                             '<h5 class="card-title">' + value.name + '</h5>' +
@@ -45,6 +42,7 @@ console.log(result);
                             return $(elem).attr('data-description');
                         }
                     },
+                    sortAscending: true,
                     filter: function() {
                         return qsRegex ? $(this).attr('data-name').match( qsRegex ) : true;
                     }
@@ -77,6 +75,13 @@ console.log(result);
                     $grid.isotope({ sortBy: sortByValue });
                 });
 
+                // bind asc(desc) button click
+                $('#ascDesc').on( 'click', 'button', function() {
+                    var direction = $(this).attr('data-sort-direction');
+                    var isAsc = (direction === 'asc');
+                    $grid.isotope({ sortAscending: isAsc });
+                });
+
 
                 // change is-checked class on buttons
                 $('.btn-group').each( function( i, buttonGroup ) {
@@ -90,7 +95,9 @@ console.log(result);
                 // modal
                 $('.card').on( 'click', '.detail', function() {
                     $('.modal-title').text($(this).closest('.card').attr('data-name'));
-                    $('.modal-body').text($(this).closest('.card').attr('data-description'));
+                    $('.modal-description').text($(this).closest('.card').attr('data-description'));
+                    var imgUrl = $(this).closest('.card').attr('data-img');
+                    $('.modal-img').css("background-image", "url(" + imgUrl + ")");
                 });
 
             }}); //end success

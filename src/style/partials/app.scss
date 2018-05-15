@@ -22,7 +22,7 @@ button{
 .card{
   flex-direction: row;
   align-items: center;
-  .card-img{
+  .card-img, .modal-img{
     flex: 0 0 39px;
     height: 150px;
     background: center center no-repeat;
@@ -30,3 +30,12 @@ button{
     margin: 15px;
   }
 }
+
+.modal-img{
+  width: 39px;
+  height: 150px;
+  background: center center no-repeat;
+  background-size: contain;
+  margin: 15px;
+}
+
