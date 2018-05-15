@@ -14,15 +14,16 @@ $(document).ready(function(){
         $.ajax({
             url: dataUrl,
             success: function(result){
-
+console.log(result);
                 dataArr = result;
                 $.each(dataArr, function (index, value) {
                     prodContainer.append(
                     '<div class="card mb-3 grid-item" data-id="' + value.id + '" data-name="' + value.name + '" data-description="' + value.description + '">' +
-                        '<div class="card-header text-white bg-dark">ID: ' + value.id + '</div>' +
+                        '<div class="card-img" style="background-image: url(' + value.image_url + '")></div>' +
                         '<div class="card-body">' +
                             '<h5 class="card-title">' + value.name + '</h5>' +
-                            '<p class="card-text text-truncate">' + value.description + '</p>' +
+                            '<h6 class="card-subtitle mb-2 text-muted">ID: ' + value.id + '</h6>' +
+                            '<p class="card-text">' + value.description + '</p>' +
                             '<button class="badge badge-info detail" data-toggle="modal" data-target="#modalProd">Detail</button>' +
                         '</div>' +
                     '</div>'
